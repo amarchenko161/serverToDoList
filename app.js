@@ -49,7 +49,7 @@ app.delete("/deleteTask", (req, res) => {
 
 app.patch("/updateTask", (req, res) => {
   if (req.query._id) {
-    if (req.body.hasOwnProperty("text") && req.body.hasOwnProperty("isCheck")) {
+    if (req.body.hasOwnProperty("text") || req.body.hasOwnProperty("isCheck")) {
       Task.updateOne({ _id: req.query._id }, req.body).then((result) => {
         Task.find().then((result) => {
           res.send({ data: result });
